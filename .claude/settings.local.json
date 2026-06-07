@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(cd /d D:\\\\Claudecode\\\\Project1)",
+      "Bash(dir /b)",
+      "Bash(java -version)",
+      "Bash(gradle -version)",
+      "Bash(findstr Gradle)",
+      "PowerShell($base=\"D:\\\\Claudecode\\\\Project1\"; $dirs=@\\(\"gradle\\\\wrapper\",\"app\\\\src\\\\main\\\\java\\\\com\\\\yuquewatch\\\\data\",\"app\\\\src\\\\main\\\\java\\\\com\\\\yuquewatch\\\\data\\\\source\",\"app\\\\src\\\\main\\\\java\\\\com\\\\yuquewatch\\\\ui\",\"app\\\\src\\\\main\\\\java\\\\com\\\\yuquewatch\\\\ui\\\\theme\",\"app\\\\src\\\\main\\\\res\\\\values\",\"app\\\\src\\\\main\\\\res\\\\drawable\",\"app\\\\src\\\\main\\\\res\\\\mipmap-anydpi-v26\"\\); foreach\\($d in $dirs\\){ New-Item -ItemType Directory -Force -Path \\(Join-Path $base $d\\) | Out-Null }; \"created\"; Get-ChildItem $base -Recurse -Directory | Select-Object -ExpandProperty FullName)",
+      "PowerShell(\"deleted YuqueDataSource.kt\")",
+      "Bash(printf 'sdk.dir=C\\\\\\\\:\\\\\\\\\\\\\\\\Users\\\\\\\\\\\\\\\\Ghzzz\\\\\\\\\\\\\\\\AppData\\\\\\\\\\\\\\\\Local\\\\\\\\\\\\\\\\Android\\\\\\\\\\\\\\\\Sdk\\\\n')",
+      "WebFetch(domain:gitee.com)",
+      "WebFetch(domain:raw.giteeusercontent.com)",
+      "WebFetch(domain:www.yuque.com)"
+    ]
+  }
+}
