@@ -58,7 +58,7 @@ fun DataSettingsScreen(initial: AppConfig, onSave: (AppConfig) -> Unit) {
             item { WatchTextField(account, { account = it }, "手机号/邮箱") }
             item { SettingLabel("密码") }
             item { WatchTextField(password, { password = it }, "用于自动重登", password = true) }
-            item { SettingHint("⚠ 明文存本机；语雀登录有加密/风控，可能失效") }
+            item { SettingHint("⚠ 加密存于本机；语雀登录有加密/风控，自动续期可能失效") }
         }
     }
 }

@@ -37,7 +37,7 @@ class NotesViewModel(app: Application) : AndroidViewModel(app) {
     // ---- 快记 ----
     fun loadQuick() {
         val ns = settings.config.value.quickRepoNamespace
-        if (ns.isBlank()) { quickNotes.value = Resource.Error("未设置快记知识库，请到 设置→数据源 选择"); return }
+        if (ns.isBlank()) { quickNotes.value = Resource.Error("未设置快记知识库，请到 设置→个性化 选择"); return }
         load(quickNotes) {
             repo.docTree(ns).filterIsInstance<DocTreeItem.Doc>().map { Note(id = it.slug, title = it.title) }
         }

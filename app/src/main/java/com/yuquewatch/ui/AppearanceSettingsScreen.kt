@@ -29,7 +29,7 @@ private val HITOKOTO_TYPES = listOf(
     "随机" to "", "文学" to "d", "诗词" to "i", "动画" to "a", "游戏" to "c", "网络" to "f",
 )
 
-/** 个人与外观: default tab, quick-record method, 一言, and full theme. */
+/** 个性化: default tab, quick-record method, 一言, and full theme. */
 @Composable
 fun AppearanceSettingsScreen(initial: AppConfig, onSave: (AppConfig) -> Unit) {
     // personal
