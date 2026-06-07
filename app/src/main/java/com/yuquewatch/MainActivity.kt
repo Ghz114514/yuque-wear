@@ -186,6 +186,7 @@ private fun MainNav(vm: NotesViewModel, config: com.yuquewatch.data.AppConfig) {
                 selectedTab = tab,
                 onSelectTab = { vm.setHomeTab(it) },
                 avatarUrl = config.avatarUrl,
+                showAvatar = config.showAvatar,
                 quick = quick,
                 onOpenQuick = { n -> nav.navigate(detailRoute(config.quickRepoNamespace, n.id, null)) },
                 onNewQuick = { vm.prepareCreate(config.quickRepoNamespace); nav.navigate(EDIT) },

@@ -52,6 +52,7 @@ fun AppearanceSettingsScreen(initial: AppConfig, onSave: (AppConfig) -> Unit) {
     var uiScale by remember { mutableStateOf(initial.uiScale) }
     var greetFont by remember { mutableStateOf(initial.greetingFontSize) }
     var tabsIconOnly by remember { mutableStateOf(initial.tabsIconOnly) }
+    var showAvatar by remember { mutableStateOf(initial.showAvatar) }
     var haptic by remember { mutableStateOf(initial.hapticEnabled) }
 
     fun build() = initial.copy(
@@ -61,7 +62,7 @@ fun AppearanceSettingsScreen(initial: AppConfig, onSave: (AppConfig) -> Unit) {
         backgroundStyle = bgStyle, backgroundDynamic = bgDynamic,
         backgroundDensity = bgDensity, backgroundIntensity = bgIntensity, pureBlack = pureBlack,
         uiScale = uiScale, greetingFontSize = greetFont,
-        tabsIconOnly = tabsIconOnly, hapticEnabled = haptic,
+        tabsIconOnly = tabsIconOnly, showAvatar = showAvatar, hapticEnabled = haptic,
     )
     AutoSaveOnExit(initial, ::build, onSave)
 
@@ -177,6 +178,7 @@ fun AppearanceSettingsScreen(initial: AppConfig, onSave: (AppConfig) -> Unit) {
                     onMinus = { greetFont = (greetFont - 1f).coerceAtLeast(14f) },
                     onPlus = { greetFont = (greetFont + 1f).coerceAtMost(28f) })
             }
+            item { SettingToggle("显示头像", showAvatar, "在问候语上方显示") { showAvatar = it } }
             item { SettingToggle("主页标签仅图标", tabsIconOnly) { tabsIconOnly = it } }
             item { SettingToggle("表冠震动", haptic, "关闭后下次启动生效") { haptic = it } }
             item { SettingHint("Monet 取色需系统支持(安卓12+)，否则回退绿色") }

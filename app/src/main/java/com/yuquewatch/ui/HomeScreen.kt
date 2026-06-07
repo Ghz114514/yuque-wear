@@ -57,6 +57,7 @@ fun HomeScreen(
     selectedTab: HomeTab,
     onSelectTab: (HomeTab) -> Unit,
     avatarUrl: String,
+    showAvatar: Boolean,
     quick: Resource<List<Note>>,
     onOpenQuick: (Note) -> Unit,
     onNewQuick: () -> Unit,
@@ -92,6 +93,14 @@ fun HomeScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(6.dp),
         ) {
+            if (showAvatar && avatarUrl.isNotBlank()) {
+                item {
+                    AsyncImage(
+                        model = avatarUrl, contentDescription = null,
+                        modifier = Modifier.size(40.dp).clip(CircleShape).padding(top = 2.dp),
+                    )
+                }
+            }
             item {
                 Text(
                     text = greeting,
@@ -147,7 +156,7 @@ fun HomeScreen(
                         }
                     }
                 }
-                HomeTab.MINE -> mineSection(avatarUrl, repos, favCount, onOpenRepo, onFavorites, onRecents, onSearch, onSettings, onRetry)
+                HomeTab.MINE -> mineSection(repos, favCount, onOpenRepo, onFavorites, onRecents, onSearch, onSettings, onRetry)
             }
         }
     }
@@ -178,7 +187,6 @@ private fun ScalingLazyListScope.notesSection(
 }
 
 private fun ScalingLazyListScope.mineSection(
-    avatarUrl: String,
     repos: Resource<List<Repo>>,
     favCount: Int,
     onOpenRepo: (Repo) -> Unit,
@@ -188,12 +196,6 @@ private fun ScalingLazyListScope.mineSection(
     onSettings: () -> Unit,
     onRetry: () -> Unit,
 ) {
-    if (avatarUrl.isNotBlank()) {
-        item {
-            AsyncImage(model = avatarUrl, contentDescription = null,
-                modifier = Modifier.size(40.dp).clip(CircleShape))
-        }
-    }
     item {
         Row(Modifier.fillMaxWidth().padding(vertical = 2.dp),
             horizontalArrangement = Arrangement.SpaceEvenly) {

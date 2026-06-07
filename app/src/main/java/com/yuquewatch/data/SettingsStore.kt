@@ -50,6 +50,7 @@ class SettingsStore(context: Context) {
             putInt(KEY_BLEED, config.bleedVertical)
             putInt(KEY_HOME_BLEED, config.homeBleed)
             putBoolean(KEY_TABS_ICON, config.tabsIconOnly)
+            putBoolean(KEY_SHOW_AVATAR, config.showAvatar)
             putString(KEY_AUTO_CLEAR, config.autoClear.name)
             putLong(KEY_LAST_CLEAR, config.lastCacheClear)
             putString(KEY_IMAGE_MODE, config.imageMode.name)
@@ -149,6 +150,7 @@ class SettingsStore(context: Context) {
             bleedVertical = prefs.getInt(KEY_BLEED, d.bleedVertical),
             homeBleed = prefs.getInt(KEY_HOME_BLEED, d.homeBleed),
             tabsIconOnly = prefs.getBoolean(KEY_TABS_ICON, d.tabsIconOnly),
+            showAvatar = prefs.getBoolean(KEY_SHOW_AVATAR, d.showAvatar),
             autoClear = runCatching { AutoClear.valueOf(prefs.getString(KEY_AUTO_CLEAR, d.autoClear.name)!!) }.getOrDefault(d.autoClear),
             lastCacheClear = prefs.getLong(KEY_LAST_CLEAR, d.lastCacheClear),
             imageMode = runCatching {
@@ -200,6 +202,7 @@ class SettingsStore(context: Context) {
         const val KEY_BLEED = "bleed_v"
         const val KEY_HOME_BLEED = "home_bleed"
         const val KEY_TABS_ICON = "tabs_icon"
+        const val KEY_SHOW_AVATAR = "show_avatar"
         const val KEY_AUTO_CLEAR = "auto_clear"
         const val KEY_LAST_CLEAR = "last_clear"
         const val KEY_IMAGE_MODE = "image_mode"

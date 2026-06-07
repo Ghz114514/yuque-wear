@@ -125,6 +125,8 @@ data class AppConfig(
     val homeBleed: Int = 16,
     /** Show home tabs as icon-only (no label). */
     val tabsIconOnly: Boolean = false,
+    /** Show the user avatar above the greeting. */
+    val showAvatar: Boolean = true,
     /** Auto cache-clear policy + last-clear time. */
     val autoClear: AutoClear = AutoClear.NEVER,
     val lastCacheClear: Long = 0,
