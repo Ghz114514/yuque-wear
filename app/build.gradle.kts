@@ -20,8 +20,8 @@ android {
         // minSdk 26 widens runtime compatibility on the watch ROM.
         minSdk = 26
         targetSdk = 34
-        versionCode = 7
-        versionName = "Beta1.0"
+        versionCode = 8
+        versionName = "Release_1.0"
 
         // Compile timestamp, surfaced on the 关于 (About) screen.
         buildConfigField("long", "BUILD_TIME_MS", "${System.currentTimeMillis()}L")
