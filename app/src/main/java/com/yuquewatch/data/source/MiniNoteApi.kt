@@ -64,7 +64,7 @@ class MiniNoteApi(private val config: AppConfig) {
             (pinned + notes).mapNotNull { it as? JsonObject }
         } else {
             (findNoteArray(root) ?: throw YuqueException(
-                "未能解析小记列表。打开 设置→小记→查看原始响应，把 JSON 截图反馈即可修复字段。"
+                "未能解析小记列表。打开 设置→调试→查看原始响应记录，把 JSON 截图反馈即可修复字段。"
             )).mapNotNull { it as? JsonObject }
         }
         return objs.map { it.toNote() }
