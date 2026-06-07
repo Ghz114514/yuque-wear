@@ -18,6 +18,10 @@ object AppInfo {
 
     /** Newest first. Add a new entry every release. */
     val changelog: List<Change> = listOf(
+        Change("Release_1.0", "2026-06-07", listOf(
+            "首个正式版：签名发布 + GitHub 开源 + Actions 自动构建",
+            "关于页加入项目地址与作者主页跳转",
+        )),
         Change("Beta1.0", "2026-06-07", listOf(
             "设置重排为：个性化/阅读与编辑器/账号与安全/缓存/调试/关于",
             "快记知识库 + 三标签(快记/小记/我的)、本地收藏、最近、搜索",

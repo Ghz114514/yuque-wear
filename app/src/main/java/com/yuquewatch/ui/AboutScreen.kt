@@ -45,6 +45,32 @@ fun AboutScreen() {
             item { Kv("代码", "Claude (Anthropic) 编写") }
             item { Kv("创建者", "1Ghz") }
             item {
+                val ctx = androidx.compose.ui.platform.LocalContext.current
+                fun open(url: String) = runCatching {
+                    ctx.startActivity(
+                        android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
+                            .addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK),
+                    )
+                }
+                androidx.compose.foundation.layout.Column(
+                    Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    androidx.wear.compose.material.CompactChip(
+                        onClick = { open("https://github.com/Ghz114514/yuque-wear") },
+                        label = { Text("项目地址 (GitHub)") },
+                        colors = androidx.wear.compose.material.ChipDefaults.secondaryChipColors(),
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    androidx.wear.compose.material.CompactChip(
+                        onClick = { open("https://space.bilibili.com/1199808099") },
+                        label = { Text("作者 B 站主页") },
+                        colors = androidx.wear.compose.material.ChipDefaults.secondaryChipColors(),
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
+            item {
                 Text(
                     "致谢",
                     style = MaterialTheme.typography.button,

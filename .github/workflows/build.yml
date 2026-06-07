@@ -1,0 +1,49 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'Release_*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew :app:assembleDebug --no-daemon
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      # When a Release_* tag is pushed, publish a GitHub Release with the APK.
+      - name: Publish Release
+        if: startsWith(github.ref, 'refs/tags/Release_')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/outputs/apk/debug/app-debug.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# 注：CI 产出的是 debug 签名包(可安装、用于自动构建/验证)。
+# 若要 CI 出"正式签名包",在仓库 Settings→Secrets 添加 KEYSTORE_BASE64 / STORE_PASSWORD /
+# KEY_ALIAS / KEY_PASSWORD,并在构建前还原 keystore 后改用 assembleRelease。
