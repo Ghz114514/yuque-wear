@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -38,8 +41,24 @@ android {
         jvmTarget = "17"
     }
 
+    signingConfigs {
+        val ksProps = Properties()
+        val ksFile = project.file("keystore.properties")
+        if (ksFile.exists()) ksProps.load(FileInputStream(ksFile))
+        create("release") {
+            if (ksFile.exists()) {
+                storeFile = project.file(ksProps.getProperty("storeFile"))
+                storePassword = ksProps.getProperty("storePassword")
+                keyAlias = ksProps.getProperty("keyAlias")
+                keyPassword = ksProps.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            val ks = project.file("keystore.properties")
+            if (ks.exists()) signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(

@@ -5,5 +5,10 @@ build/
 *.iml
 .DS_Store
 /captures
+/build_log.txt
 .externalNativeBuild
 .cxx
+# Signing — never commit
+keystore.properties
+*.keystore
+*.jks
